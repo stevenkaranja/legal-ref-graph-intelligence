@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: legal-ref-api
+  namespace: legal-ref
+spec:
+  selector:
+    app: legal-ref-api
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: ClusterIP
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: legal-ref-ingress
+  namespace: legal-ref
+  annotations:
+    nginx.ingress.kubernetes.io/rate-limit: "100"
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts: [api.legal-ref.internal]
+      secretName: legal-ref-tls
+  rules:
+    - host: api.legal-ref.internal
+      http:
+        paths:
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: legal-ref-api
+                port:
+                  number: 80
