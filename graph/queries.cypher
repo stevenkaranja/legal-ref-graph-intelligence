@@ -23,3 +23,12 @@ ORDER BY upstream_refs DESC;
 MATCH (e:Entity {name: $entity_name})<-[:INVOLVES]-(d:Document)-[:GOVERNED_BY]->(r:Regulation)
 RETURN d.title, r.code, r.jurisdiction, type(relationships(path)[0]) AS role
 ORDER BY d.issued_date DESC;
+
+// Optimised: use APOC for parallel traversal at scale
+CALL apoc.path.subgraphNodes(startNode, {
+  relationshipFilter: 'REFERENCES>',
+  maxLevel: 3,
+  bfs: true
+}) YIELD node
+WHERE node:Document
+RETURN node.id, node.title;
