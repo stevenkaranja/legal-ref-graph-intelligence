@@ -6,7 +6,7 @@
 
 ## The Problem
 
-A fintech company's legal team was spending **60% of their working hours** manually cross-referencing global regulatory updates against a growing library of contracts, policies, and compliance documents. Each compliance report took 3–5 days to produce — requiring analysts to manually trace document chains, identify applicable regulations, and flag gaps. With regulatory updates arriving daily across multiple jurisdictions, the process was both slow and error-prone.
+A fintech company's legal team was spending **60% of their working hours** manually cross-referencing global regulatory updates against a growing library of contracts, policies, and compliance documents. Each compliance report took 3–5 days to produce requiring analysts to manually trace document chains, identify applicable regulations, and flag gaps. With regulatory updates arriving daily across multiple jurisdictions, the process was both slow and error-prone.
 
 ---
 
